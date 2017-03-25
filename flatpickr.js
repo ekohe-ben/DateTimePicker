@@ -145,6 +145,9 @@ function Flatpickr(element, config) {
 		self.changeMonth(Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY)));
 	}
 
+	///////////////////////////////////////////////////////////////
+	// Ekohe Edit: Add keyup handler (updateCalendar) to input
+
 	function bind() {
 		if (self.config.wrap) {
 			["open", "close", "toggle", "clear"].forEach(function (el) {
@@ -239,10 +242,13 @@ function Flatpickr(element, config) {
 				});
 			}
 
+			// Ekohe Add
 			self.input.addEventListener("keyup", updateCalendar);
 		}
 	}
 
+	///////////////////////////////////////////////////////////////
+	// Ekohe Add: Update Calendar along with input change
 	function updateCalendar() {
 		var format = self.config.dateFormat;
 		var date = self.parseDate(self.input.value, false, format);
