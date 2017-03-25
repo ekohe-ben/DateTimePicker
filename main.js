@@ -7,7 +7,15 @@ $(document).ready(function(){
     }
   });
 
-  $('#inputmask-editor').inputmask('wulinDateTime').flatpickr({
+  $('#inputmask-editor').inputmask('wulinDateTime');
+
+  $('#flatpickr-editor').flatpickr({
+    allowInput: true,
+    enableTime: true,
+    dateFormat: 'd/m/Y H:i',
+  });
+
+  $('#combined-editor').inputmask('wulinDateTime').flatpickr({
     allowInput: true,
     enableTime: true,
     dateFormat: 'd/m/Y H:i',
