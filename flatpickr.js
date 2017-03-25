@@ -239,16 +239,16 @@ function Flatpickr(element, config) {
 				});
 			}
 
-			self.input.addEventListener("input", onInput);
+			self.input.addEventListener("keyup", updateCalendar);
 		}
 	}
 
-	function onInput() {
+	function updateCalendar() {
 		var format = self.config.dateFormat;
 		var date = self.parseDate(self.input.value, false, format);
 
 		if (date) {
-			setSelectedDate(date, self.config.format);
+			setSelectedDate(date, format);
 			jumpToDate(date);
 			setHoursFromDate(date);
 		}
@@ -771,7 +771,11 @@ function Flatpickr(element, config) {
 
 	function onKeyDown(e) {
 
-		if (e.target === (self.altInput || self.input) && e.which === 13) selectDate(e);else if (self.isOpen || self.config.inline) {
+		if (e.target === (self.altInput || self.input) && e.which === 13) {
+			selectDate(e);
+		} else if (e.target === (self.altInput || self.input) && ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105))) {
+			updateCalendar();
+		} else if (self.isOpen || self.config.inline) {
 			switch (e.key) {
 				case "Enter":
 					if (self.timeContainer && self.timeContainer.contains(e.target)) updateValue();else selectDate(e);
