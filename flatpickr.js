@@ -771,11 +771,7 @@ function Flatpickr(element, config) {
 
 	function onKeyDown(e) {
 
-		if (e.target === (self.altInput || self.input) && e.which === 13) {
-			selectDate(e);
-		// } else if (e.target === (self.altInput || self.input) && ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105))) {
-		// 	selectDate(e);
-		} else if (self.isOpen || self.config.inline) {
+		if (e.target === (self.altInput || self.input) && e.which === 13) selectDate(e);else if (self.isOpen || self.config.inline) {
 			switch (e.key) {
 				case "Enter":
 					if (self.timeContainer && self.timeContainer.contains(e.target)) updateValue();else selectDate(e);
@@ -832,7 +828,6 @@ function Flatpickr(element, config) {
 					break;
 
 				default:
-					// if (self.timeContainer && self.timeContainer.contains(e.target)) updateValue();else selectDate(e);
 					break;
 
 			}
@@ -1055,7 +1050,6 @@ function Flatpickr(element, config) {
 		e.stopPropagation();
 
 		if (self.config.allowInput && e.key === "Enter" && e.target === (self.altInput || self.input)) {
-		// if (self.config.allowInput && e.target === (self.altInput || self.input)) {
 			self.setDate((self.altInput || self.input).value, true, e.target === self.altInput ? self.config.altFormat : self.config.dateFormat);
 			return e.target.blur();
 		}
