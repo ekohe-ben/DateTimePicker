@@ -11,4 +11,4 @@ A datetime editor solution with [flatpickr](https://chmln.github.io/flatpickr) a
 - [x] Set default year & time with Inputmask
 - [x] Combine usage of Inputmask & flatpickr
 - [x] Update Calendar dynamically along with keyboard input
-- [ ] Show time picker when `onFocus`
+- [x] Show time input from beginning

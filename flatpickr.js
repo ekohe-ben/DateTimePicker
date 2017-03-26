@@ -21,6 +21,10 @@ function Flatpickr(element, config) {
 	self.setDate = setDate;
 	self.toggle = toggle;
 
+	/////////////////////////////////////////////////////////////////////////////
+	// Ekohe Edit: Change to always show up time input
+	/////////////////////////////////////////////////////////////////////////////
+
 	function init() {
 		if (element._flatpickr) destroy(element._flatpickr);
 
@@ -54,7 +58,9 @@ function Flatpickr(element, config) {
 			self.calendarContainer.style.width = self.days.clientWidth + self.weekWrapper.clientWidth + "px";
 		}
 
-		self.showTimeInput = self.selectedDates.length > 0 || self.config.noCalendar;
+		// Ekohe Modify: Change to always show time input
+		// self.showTimeInput = self.selectedDates.length > 0 || self.config.noCalendar;
+		self.showTimeInput = true;
 
 		if (!self.isMobile) positionCalendar();
 		triggerEvent("Ready");
@@ -145,8 +151,9 @@ function Flatpickr(element, config) {
 		self.changeMonth(Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY)));
 	}
 
-	///////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
 	// Ekohe Edit: Add keyup handler (updateCalendar) to input
+	/////////////////////////////////////////////////////////////////////////////
 
 	function bind() {
 		if (self.config.wrap) {
@@ -242,13 +249,15 @@ function Flatpickr(element, config) {
 				});
 			}
 
-			// Ekohe Add
+			// Ekohe Add: Update calendar when KeyUp
 			self.input.addEventListener("keyup", updateCalendar);
 		}
 	}
 
-	///////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
 	// Ekohe Add: Update Calendar along with input change
+	/////////////////////////////////////////////////////////////////////////////
+
 	function updateCalendar() {
 		var format = self.config.dateFormat;
 		var date = self.parseDate(self.input.value, false, format);
@@ -779,8 +788,6 @@ function Flatpickr(element, config) {
 
 		if (e.target === (self.altInput || self.input) && e.which === 13) {
 			selectDate(e);
-		} else if (e.target === (self.altInput || self.input) && ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105))) {
-			updateCalendar();
 		} else if (self.isOpen || self.config.inline) {
 			switch (e.key) {
 				case "Enter":
