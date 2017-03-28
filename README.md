@@ -12,3 +12,4 @@ A datetime editor solution with [flatpickr](https://chmln.github.io/flatpickr) a
 - [x] Combine usage of Inputmask & flatpickr
 - [x] Update Calendar dynamically along with keyboard input
 - [x] Show time input from beginning
+- [x] Change to not allow skip digits when input datetime
