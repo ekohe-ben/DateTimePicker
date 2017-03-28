@@ -4,6 +4,7 @@ $(document).ready(function(){
     'wulinDateTime': {
       alias: "datetime",
       placeholder: 'dd/mm/2017 12:00',
+      yearrange: { minyear: 1900, maxyear: 2020 },
     }
   });
 
@@ -18,7 +19,7 @@ $(document).ready(function(){
   $('#combined-editor').inputmask('wulinDateTime').flatpickr({
     allowInput: true,
     enableTime: true,
-    dateFormat: 'd/m/Y H:i',
+    dateFormat: 'd/m/Y H:i'
   });
 
 });
