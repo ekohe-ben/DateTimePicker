@@ -13,4 +13,5 @@ A datetime editor solution with [flatpickr](https://chmln.github.io/flatpickr) a
 - [x] Update Calendar dynamically along with keyboard input
 - [x] Show time input from beginning
 - [x] Change to not allow skip digits when input datetime
-- [x] Define minyear & maxyear
+- [x] Add `yearrange` option to Inputmask
+- [x] Add `minDate` & `maxDate` options to flatpickr
