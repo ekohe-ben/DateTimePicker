@@ -191,7 +191,9 @@ function Flatpickr(element, config) {
 		window.document.addEventListener("click", documentClick);
 		(self.altInput || self.input).addEventListener("blur", documentClick);
 
-		if (self.config.clickOpens) (self.altInput || self.input).addEventListener("focus", open);
+		// Ekohe Edit: Change to open calendar when click the input
+		// if (self.config.clickOpens) (self.altInput || self.input).addEventListener("focus", open);
+		(self.altInput || self.input).addEventListener("click", wulinOpen);
 
 		if (!self.config.noCalendar) {
 			self.prevMonthNav.addEventListener("click", function () {
@@ -252,6 +254,15 @@ function Flatpickr(element, config) {
 			// Ekohe Add: Update calendar when KeyUp
 			self.input.addEventListener("keyup", updateCalendar);
 		}
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	// Ekohe Add: Update datetime when open the calendar
+	/////////////////////////////////////////////////////////////////////////////
+
+	function wulinOpen() {
+		self.open();
+		updateCalendar();
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -784,10 +795,18 @@ function Flatpickr(element, config) {
 		return !bool;
 	}
 
+	/////////////////////////////////////////////////////////////////////////////
+	// Ekohe Edit: Close calender when push 'ENTER' key in the input field
+	/////////////////////////////////////////////////////////////////////////////
+
 	function onKeyDown(e) {
 
-		if (e.target === (self.altInput || self.input) && e.which === 13) {
-			selectDate(e);
+		// Ekohe Modify: Close calender and set focus on input when push 'ENTER' key on calendar
+		// if (e.target === (self.altInput || self.input) && e.which === 13) {
+		if (e.which === 13) {
+			// selectDate(e);
+			self.close();
+			self.input.focus();
 		} else if (self.isOpen || self.config.inline) {
 			switch (e.key) {
 				case "Enter":
